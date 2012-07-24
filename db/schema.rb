@@ -11,12 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120722011253) do
+ActiveRecord::Schema.define(:version => 20120723063701) do
+
+  create_table "ingredients", :force => true do |t|
+    t.string   "name"
+    t.integer  "sandwich_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "ingredients", ["sandwich_id"], :name => "index_ingredients_on_sandwich_id"
 
   create_table "sandwiches", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "type"
+    t.integer  "user_id"
   end
+
+  add_index "sandwiches", ["user_id"], :name => "index_sandwiches_on_user_id"
 
 end

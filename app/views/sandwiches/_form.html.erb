@@ -1,0 +1,37 @@
+<%= form_for @sandwich, :html => { :class => 'form-horizontal' } do |f| %>
+<% if @sandwich.errors.any? %>
+<div class="error_messages">
+	<h2><%= pluralize(@sandwich.errors.count, 'error')%> prohibited this sandwich from being saved:</h2>
+	<ul>
+		<% @sandwich.errors.full_messages.each do |msg| %>
+		<li><%= msg %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+<div class="control-group">
+	<%= f.label :name, :class => 'control-label' %>
+	<div class="controls">
+		<%= f.text_field :name, :class => 'text_field' %>
+	</div>
+</div>
+
+<div class="control-group">
+	<%= f.label :type, :class => 'control-label' %>
+	<div class="controls">
+		<%= f.select :type, [["Meat Lovers"], ["Veggies"], ["Vegan (Awww T_T)"]], { include_blank: true } %>
+	</div>
+</div>
+
+<div class="control-group">
+	<%= f.label :message, :class => 'control-label' %>
+	<div class="controls">
+		<%= f.text_field :message, class: 'text_field' %>
+	</div>
+</div>
+
+<div class="form-actions">
+	<%= f.submit nil, :class => 'btn btn-primary' %>
+	<%= link_to t('.cancel', :default => t("helpers.links.cancel")), sandwiches_path, :class => 'btn' %>
+</div>
+<% end %>
