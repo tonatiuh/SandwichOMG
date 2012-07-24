@@ -9,7 +9,15 @@ class SandwichesController < ApplicationController
   end
 
   def create
-    @sandwich = Sandwich.new(params[:sandwich])
-    raise @sandwich.to_yaml
+    if response = Sandwicher::Sandwich.make(params[:sandwich][:user_message])
+      @sandwich = Sandwich.new(params[:sandwich])
+      raise @sandwich.to_yaml
+    else
+      redirect_to angry_sandwicher_path
+    end
+  end
+  
+  def angry_sandwicher
+    
   end
 end

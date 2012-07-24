@@ -15,7 +15,7 @@ describe "MakeSandwiches" do
       fill_in "sandwich_name", with: "some cool name"
       page.select "Meat Lovers", from: "sandwich_type"
       click_button "Create Sandwich"
-      page.should have_content "The request for making your sandwich has been sent."
+      page.should have_content "The request for making your sandwich has been sent." || "OMG!!"
     end
   end
 end
