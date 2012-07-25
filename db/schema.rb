@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120723063701) do
+ActiveRecord::Schema.define(:version => 20120725025428) do
 
   create_table "ingredients", :force => true do |t|
     t.string   "name"
@@ -31,5 +31,16 @@ ActiveRecord::Schema.define(:version => 20120723063701) do
   end
 
   add_index "sandwiches", ["user_id"], :name => "index_sandwiches_on_user_id"
+
+  create_table "users", :force => true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "nick_name"
+    t.string   "profile_picture"
+    t.string   "description"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
 end

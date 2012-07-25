@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'sandwicher'
 
 describe "MakeSandwiches" do
   context "#index" do
