@@ -46,3 +46,4 @@ group :test do
 end
 
 gem 'omniauth-twitter'
+gem 'twitter'

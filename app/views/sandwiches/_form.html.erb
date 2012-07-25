@@ -29,13 +29,14 @@
 		<%= f.text_field :user_message, class: 'text_field' %>
 	</div>
 </div>
-
+<% unless current_user %>
 <div class="control-group">
 	<%= f.label :no_login_email, :class => 'control-label' %>
 	<div class="controls">
 		<%= f.text_field :no_login_email, class: 'text_field' %>
 	</div>
 </div>
+<% end %>
 
 <div class="form-actions">
 	<%= f.submit nil, :class => 'btn btn-primary' %>

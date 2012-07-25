@@ -15,8 +15,9 @@ describe "MakeSandwiches" do
       click_link "Create"
       fill_in "sandwich_name", with: "some cool name"
       page.select "Meat Lovers", from: "sandwich_type"
+      fill_in "sandwich_user_message", with: "sudo make me a sandwich"
       click_button "Create Sandwich"
-      page.should have_content "The request for making your sandwich has been sent." || "OMG!!"
+      page.should have_content "Your request has been submitted"
     end
   end
 end

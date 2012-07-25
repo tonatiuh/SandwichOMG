@@ -14,6 +14,12 @@ class SandwichesController < ApplicationController
       if current_user
         @sandwich = current_user.sandwiches.build(params[:sandwich])
         if @sandwich.save
+          if params[:sandwich][:user_message].include? "sudo"
+            message = "Hey @generalthings I'm requesting a #{@sandwich.type} sandwich and i believe I added sudo to my message so get to work."
+          else
+            message = "Hi guys @generalthings can you please make me a #{@sandwich.type} sandwich, I will be forever thankfull."
+          end
+          Twitter.update(message)
           redirect_to order_complete_path, notice: "We're taking care of buisnes here, we will notify you when your sandwich is ready."
         else
           render :new

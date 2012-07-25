@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :sandwiches
+  
   def self.use_the_omniauth the_info
     where(the_info.slice("provider", "uid")).first || create_user_from_omniauth(the_info)
   end
