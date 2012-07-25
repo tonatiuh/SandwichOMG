@@ -38,6 +38,9 @@ class SandwichesController < ApplicationController
   end
   
   def reorder
-    
+    sandwich = Sandwich.find(params[:id])
+    Twitter.update("Hey @generalthings what about my #{sandwich.sandwich_type} sandwich? I hope to hear from you soon as I'm very hungry.")
+    Sandwich.reordered(sandwich.id)
+    redirect_to view_profile_path(sandwich.user.id), notice: "Dont worry we've warned those guys about your discontent, If they do not respond will have to get nasty on them."
   end
 end

@@ -16,10 +16,11 @@
 			<td><%= s.sandwich_type %></td>
 			<td><%= time_ago_in_words(s.created_at) %></td>
 			<td><%= link_to "Delete", "/sandwiches/#{s.id}", method: :delete %></td>
-			<% if (Time.now - s.created_at)/86400 >= 1 %>
+			<% if (Time.now - s.updated_at)/86400 >= 1 %>
 			<td><%= link_to "Reorder", reorder_path(s) %></td>
 			<% end %>
 		</tr>
 		<% end %>
 	</tbody>  
 </table>
+<h6>If your sandwich has not been delivered in more than 1 day, you will be able to reorder it.</h6>

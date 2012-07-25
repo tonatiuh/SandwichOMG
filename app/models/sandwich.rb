@@ -7,4 +7,9 @@ class Sandwich < ActiveRecord::Base
   validates :name, presence: { message: ": This bad boy needs to have a name." }
   
   #accepts_nested_attributes_for :ingredients, reject_if: proc { |attributes| attributes['name'].blank? }
+  def self.reordered id
+    sandwich = find(id)
+    sandwich.updated_at = Time.now
+    sandwich.save
+  end
 end
