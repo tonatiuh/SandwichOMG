@@ -30,4 +30,14 @@ class SandwichesController < ApplicationController
   
   def angry_sandwicher
   end
+  
+  def destroy
+    sandwich = Sandwich.find(params[:id])
+    sandwich.destroy
+    redirect_to view_profile_path(sandwich.user.id), alert: "The sandwich has gone to a better place."
+  end
+  
+  def reorder
+    
+  end
 end
