@@ -1,7 +1,7 @@
 module Sandwicher
   class Sandwich
     def self.make message = ""
-      random_number = Random.rand(1...5)
+      random_number = 1 + rand(5)
       if random_number != 3 or message.include? "sudo"
         true #Sandwicher agrees to make the sandwich
       else
