@@ -5,7 +5,7 @@ class Sandwich < ActiveRecord::Base
   attr_accessible :name, :sandwich_type, :user_message, :no_login_email
   attr_accessor :user_message, :no_login_email
   validates :name, presence: { message: ": This bad boy needs to have a name." }
-  validates :type, presence: { message: "We need to know what type of sandwich you want." }
+  validates :sandwich_type, presence: { message: "We need to know what type of sandwich you want." }
   
   rescue Twitter::Error => e
     logger.error "#{e.message}."
