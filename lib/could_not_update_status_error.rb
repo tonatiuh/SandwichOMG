@@ -1,0 +1,2 @@
+class CouldNotUpdateStatusError < StandardError
+end

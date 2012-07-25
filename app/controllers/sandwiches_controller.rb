@@ -14,13 +14,23 @@ class SandwichesController < ApplicationController
       if current_user
         @sandwich = current_user.sandwiches.build(params[:sandwich])
         if @sandwich.save
-          Twitter.update(Sandwicher::Sandwich.build_message(params[:sandwich]))
-          redirect_to order_complete_path, notice: "We're taking care of busines here, we will notify you when your sandwich is ready."
+          begin
+            Twitter.update(Sandwicher::Sandwich.build_message(params[:sandwich]))
+            redirect_to order_complete_path, notice: "We're taking care of busines here, we will notify you when your sandwich is ready."
+          rescue StandardError => e
+            flash.now.notice = "#{e.message}"
+            render :new
+          end
         else
           render :new
         end
       else
-        Twitter.update(Sandwicher::Sandwich.build_message(params[:sandwich]))
+        begin
+          Twitter.update(Sandwicher::Sandwich.build_message(params[:sandwich]))
+        rescue
+          flash.now.notice = "#{e.message}"
+          render :new
+        end
         redirect_to order_complete_path, notice: "We're taking care of busines here, we will notify you when your sandwich is ready."
       end
     else
